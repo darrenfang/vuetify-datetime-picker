@@ -1,0 +1,22 @@
+version: 2
+defaults: &defaults
+  working_directory: ~/workspace
+  docker:
+    - image: circleci/node:7.10
+
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - run: echo "$PUBLIC_REGISTRY:_authToken=$PUBLIC_REGISTRY_TOKEN" >> ~/.npmrc
+      - checkout
+      - run: yarn install
+      - run: npm run deploy
+
+workflows:
+  version: 2
+
+  btd:
+    jobs:
+      - build:
+          context: NPM
