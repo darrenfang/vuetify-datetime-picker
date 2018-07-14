@@ -1,0 +1,16 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "extends": "standard",
+  "env": {
+    "browser": true
+  },
+  "plugins": [
+    "vue"
+  ],
+  "settings": {
+    "import/extensions": [".js", ".vue", ".less"]
+  }
+}
