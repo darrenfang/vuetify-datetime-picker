@@ -45,8 +45,8 @@
             </v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="grey lighten-1" flat @click.native="clearHandler">CLEAR</v-btn>
-                <v-btn color="green darken-1" flat @click="okHandler">OK</v-btn>
+                <v-btn color="grey lighten-1" flat @click.native="clearHandler">{{clearText}}</v-btn>
+                <v-btn color="green darken-1" flat @click="okHandler">{{okText}}</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -89,6 +89,14 @@
       locale: {
         type: String,
         default: 'en-us'
+      },
+      clearText: {
+        type: String,
+        default: 'CLEAR'
+      },
+      okText: {
+        type: String,
+        default: 'OK'
       }
     },
     data () {
