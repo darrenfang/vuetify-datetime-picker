@@ -8,7 +8,7 @@
         <v-text-field
                 slot="activator"
                 :label="label"
-                v-model="formattedDatetime"
+                :value="formattedDatetime"
                 readonly>
         </v-text-field>
 

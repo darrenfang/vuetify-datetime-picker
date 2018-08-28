@@ -1,6 +1,6 @@
 {
   "name": "vuetify-datetime-picker",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "DatetimePicker component for Vuetify.js.",
   "main": "dist/index.js",
   "scripts": {
