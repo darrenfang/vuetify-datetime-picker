@@ -36,19 +36,19 @@ Once installed, it can be used in a template as simply as:
 
 ## Properties
 
-|        Name        |  Type  |    Default Value    |                         Description                           |
-| ------------------ | ------ | ------------------- | ------------------------------------------------------------- |
-| datetime (model)   | Date   |                     | Time picker model.                                            |
-| label              | string |                     | Sets input label.                                             |
-| width              | Number | 320                 | The width of the content.                                     |
-| format             | string | YYYY-MM-DD HH:mm:ss | Defines the format of a datetime displayed in field.          |
-| timePickerFormat   | string | 24hr                | Defines the format of a time displayed in picker. Available options are ampm and 24hr. |
-| locale             | string | en-us               | Sets the locale. Accepts a string with a BCP 47 language tag. |
-| clearText          | string | CLEAR               | Sets the handler when the clear button clicked.               |
-| okText             | string | OK                  | Sets the color of the ok button to danger.                    |
+|        Name        |  Type         |    Default Value    |                         Description                           |
+| ------------------ | ------------- | ------------------- | ------------------------------------------------------------- |
+| datetime (model)   | Date/String   |                     | Time picker model.                                            |
+| label              | string        |                     | Sets input label.                                             |
+| width              | Number        | 320                 | The width of the content.                                     |
+| format             | string        | YYYY-MM-DD HH:mm:ss | Defines the format of a datetime displayed in field.          |
+| timePickerFormat   | string        | 24hr                | Defines the format of a time displayed in picker. Available options are ampm and 24hr. |
+| locale             | string        | en-us               | Sets the locale. Accepts a string with a BCP 47 language tag. |
+| clearText          | string        | CLEAR               | Sets the handler when the clear button clicked.               |
+| okText             | string        | OK                  | Sets the color of the ok button to danger.                    |
 
 ## Events
 
-|    Name    |    Arguments    |       Description        |
-| -----------| ----------------| ------------------------ |
-| input      | value (Date)    | The updated bound model  |
+|    Name    |    Arguments           |       Description        |
+| -----------| -----------------------| ------------------------ |
+| input      | value (Date/String)    | The updated bound model  |
