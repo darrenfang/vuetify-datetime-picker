@@ -67,7 +67,7 @@
     },
     props: {
       datetime: {
-        type: Date,
+        type: [Date, String],
         default: null
       },
       label: {
@@ -109,7 +109,11 @@
       }
     },
     created () {
-      this.selectedDatetime = this.datetime
+      if (this.datetime instanceof Date) {
+        this.selectedDatetime = this.datetime
+      } else if (this.datetime instanceof String) {
+        this.selectedDatetime = moment(this.datetimeString, this.format)
+      }
     },
     computed: {
       datePart: {
