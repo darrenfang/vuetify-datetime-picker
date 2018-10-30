@@ -138,9 +138,6 @@
           return val
         },
         set (val) {
-          if (this.$refs.timer.selectingHour) {
-            return
-          }
           this.timeSelected = true
 
           let time = moment(val, DEFAULT_TIME_FORMAT)
