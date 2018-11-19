@@ -1,7 +1,6 @@
 <template>
     <v-dialog
             v-model="display"
-            persistent
             lazy
             full-width
             :width="width"
