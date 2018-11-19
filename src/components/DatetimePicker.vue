@@ -4,11 +4,13 @@
             persistent
             lazy
             full-width
-            :width="width">
+            :width="width"
+            :disabled="disabled">
         <v-text-field
                 slot="activator"
                 :label="label"
                 :value="formattedDatetime"
+                :disabled="disabled"
                 readonly>
         </v-text-field>
 
@@ -97,6 +99,10 @@
       okText: {
         type: String,
         default: 'OK'
+      },
+      disabled: {
+        type: Boolean,
+        default: false
       }
     },
     data () {
