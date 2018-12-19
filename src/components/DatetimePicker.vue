@@ -46,8 +46,12 @@
             </v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="grey lighten-1" flat @click.native="clearHandler">{{clearText}}</v-btn>
-                <v-btn color="green darken-1" flat @click="okHandler">{{okText}}</v-btn>
+                <slot name="actions"
+                      :parent="this"
+                >
+                    <v-btn color="grey lighten-1" flat @click.native="clearHandler">{{clearText}}</v-btn>
+                    <v-btn color="green darken-1" flat @click="okHandler">{{okText}}</v-btn>
+                </slot>
             </v-card-actions>
         </v-card>
     </v-dialog>
