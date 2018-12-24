@@ -47,6 +47,7 @@ Once installed, it can be used in a template as simply as:
 | locale             | string        | en-us               | Sets the locale. Accepts a string with a BCP 47 language tag.                          |
 | okText             | string        | OK                  | Sets the text of the ok button.                                                        |
 | clearText          | string        | CLEAR               | Sets the text of the clear button.                                                     |
+| iconSet            | string        | mdi                 | Sets the icon set of the component.                                                    |
 
 ## Events
 
