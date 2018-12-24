@@ -130,8 +130,8 @@
         this.selectedDatetime = moment(this.datetimeString, this.format)
       }
       if (this.iconSet === 'fa' || this.iconSet === 'fa4') {
-        this.eventIcon = 'fa-calendar';
-        this.accessIcon = 'fa-clock';
+        this.eventIcon = 'fa-calendar'
+        this.accessIcon = 'fa-clock'
       }
     },
     computed: {
