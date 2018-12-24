@@ -17,10 +17,10 @@
             <v-card-text style="padding: 0;">
                 <v-tabs fixed-tabs v-model="activeTab">
                     <v-tab key="calendar">
-                        <v-icon>event</v-icon>
+                        <v-icon>{{eventIcon}}</v-icon>
                     </v-tab>
                     <v-tab key="timer" :disabled="!dateSelected">
-                        <v-icon>access_time</v-icon>
+                        <v-icon>{{accessIcon}}</v-icon>
                     </v-tab>
                     <v-tab-item key="calendar">
                         <v-date-picker
@@ -106,6 +106,10 @@
       disabled: {
         type: Boolean,
         default: false
+      },
+      iconSet: {
+        type: String,
+        default: 'mdi'
       }
     },
     data () {
@@ -114,7 +118,9 @@
         dateSelected: false,
         timeSelected: false,
         activeTab: 0,
-        selectedDatetime: null
+        selectedDatetime: null,
+        eventIcon: 'event',
+        accessIcon: 'access_time'
       }
     },
     created () {
@@ -122,6 +128,10 @@
         this.selectedDatetime = this.datetime
       } else if (this.datetime instanceof String) {
         this.selectedDatetime = moment(this.datetimeString, this.format)
+      }
+      if (this.iconSet === 'fa' || this.iconSet === 'fa4') {
+        this.eventIcon = 'fa-calendar';
+        this.accessIcon = 'fa-clock';
       }
     },
     computed: {
