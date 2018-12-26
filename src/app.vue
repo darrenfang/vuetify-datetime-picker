@@ -29,12 +29,26 @@
                     </v-datetime-picker>
                 </v-flex>
             </v-layout>
+            <v-layout row justify-center>
+                <v-flex xs4>
+                    <span class="subheading">Custom Icons</span>
+                    <v-datetime-picker v-model="datetime">
+                        <template slot="dateIcon">
+                            <v-icon>fas fa-calendar</v-icon>
+                        </template>
+                        <template slot="timeIcon">
+                            <v-icon>fas fa-clock</v-icon>
+                        </template>
+                    </v-datetime-picker>
+                </v-flex>
+            </v-layout>
         </v-container>
     </v-app>
 </template>
 
 <script>
   import moment from 'moment'
+  import '@fortawesome/fontawesome-free/css/all.css'
 
   export default {
     data () {

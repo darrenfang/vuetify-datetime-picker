@@ -53,3 +53,11 @@ Once installed, it can be used in a template as simply as:
 |    Name    |    Arguments           |       Description        |
 | -----------| -----------------------| ------------------------ |
 | input      | value (Date/String)    | The updated bound model  |
+
+## Slots
+
+|    Name    |       Description                         |
+| -----------| ----------------------------------------- |
+| dateIcon   | Slot to put custom icon in the date tab.  |
+| timeIcon   | Slot to put custom icon in the time tab.  |
+| actions    | Slot to put custom buttons in the dialog. |

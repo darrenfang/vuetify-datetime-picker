@@ -17,10 +17,14 @@
             <v-card-text style="padding: 0;">
                 <v-tabs fixed-tabs v-model="activeTab">
                     <v-tab key="calendar">
-                        <v-icon>event</v-icon>
+                        <slot name="dateIcon">
+                            <v-icon>event</v-icon>
+                        </slot>
                     </v-tab>
                     <v-tab key="timer" :disabled="!dateSelected">
-                        <v-icon>access_time</v-icon>
+                        <slot name="timeIcon">
+                            <v-icon>access_time</v-icon>
+                        </slot>
                     </v-tab>
                     <v-tab-item key="calendar">
                         <v-date-picker
