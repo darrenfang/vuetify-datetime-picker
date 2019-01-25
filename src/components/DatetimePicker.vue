@@ -125,7 +125,7 @@
       if (this.datetime instanceof Date) {
         this.selectedDatetime = this.datetime
       } else if (this.datetime instanceof String) {
-        this.selectedDatetime = moment(this.datetimeString, this.format)
+        this.selectedDatetime = moment(this.datetime, this.format)
       }
     },
     computed: {
