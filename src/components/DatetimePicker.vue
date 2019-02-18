@@ -10,6 +10,13 @@
                 :label="label"
                 :value="formattedDatetime"
                 :disabled="disabled"
+                :loading="loading"
+                :error-messages="errorMessages"
+                :error-count="errorCount"
+                :error="error"
+                :hide-details="hideDetails"
+                :append-icon="appendIcon"
+                :prepend-icon="prependIcon"
                 readonly>
         </v-text-field>
 
@@ -110,7 +117,33 @@
       disabled: {
         type: Boolean,
         default: false
-      }
+      },
+      loading: {
+        type: Boolean,
+        default: false
+      },
+      errorMessages: {
+        type: [String, Array],
+        default: []
+      },
+      errorCount: {
+        type: [Number, String],
+        default: 1
+      },
+      error: {
+        type: Boolean,
+        default: false
+      },
+      hideDetails: {
+        type: Boolean,
+        default: false
+      },
+      appendIcon: {
+        type: String
+      },
+      prependIcon: {
+        type: String
+      },
     },
     data () {
       return {
