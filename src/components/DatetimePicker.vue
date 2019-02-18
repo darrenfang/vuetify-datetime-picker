@@ -112,9 +112,9 @@
         type: Boolean,
         default: false
       },
-      prependIcon:{
-        type:String,
-        default:""
+      prependIcon: {
+        type: String,
+        default: ''
       }
     },
     data () {
