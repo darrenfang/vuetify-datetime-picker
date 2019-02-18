@@ -8,6 +8,7 @@
         <v-text-field
                 slot="activator"
                 :label="label"
+                :prepend-icon="prependIcon"
                 :value="formattedDatetime"
                 :disabled="disabled"
                 readonly>
@@ -110,6 +111,10 @@
       disabled: {
         type: Boolean,
         default: false
+      },
+      prependIcon:{
+        type:String,
+        default:""
       }
     },
     data () {
