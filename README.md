@@ -47,6 +47,13 @@ Once installed, it can be used in a template as simply as:
 | locale             | string        | en-us               | Sets the locale. Accepts a string with a BCP 47 language tag.                          |
 | okText             | string        | OK                  | Sets the text of the ok button.                                                        |
 | clearText          | string        | CLEAR               | Sets the text of the clear button.                                                     |
+| loading            | Boolean | false | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields "Vuetify Docs") |
+| errorMessages      | String/Array | | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields "Vuetify Docs") |
+| errorCount         | Number/String | 1 | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields "Vuetify Docs") |
+| error              | Boolean | false | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields "Vuetify Docs") |
+| hideDetails        | Boolean | false | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields "Vuetify Docs") |
+| appendIcon         | String | | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields "Vuetify Docs") |
+| prependIcon        | String | | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields "Vuetify Docs") |
 
 ## Events
 
