@@ -143,7 +143,7 @@
       },
       prependIcon: {
         type: String
-      },
+      }
     },
     data () {
       return {
