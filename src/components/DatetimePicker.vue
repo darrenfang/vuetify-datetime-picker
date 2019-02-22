@@ -124,7 +124,7 @@
       },
       errorMessages: {
         type: [String, Array],
-        default: []
+        default: () => []
       },
       errorCount: {
         type: [Number, String],
