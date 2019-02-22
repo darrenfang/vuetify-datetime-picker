@@ -157,7 +157,8 @@
     created () {
       if (this.datetime instanceof Date) {
         this.selectedDatetime = this.datetime
-      } else if (this.datetime instanceof String) {
+      } else if (typeof this.datetime === 'string' || this.datetime instanceof String) {
+        // see https://stackoverflow.com/a/9436948
         this.selectedDatetime = moment(this.datetime, this.format)
       }
     },
