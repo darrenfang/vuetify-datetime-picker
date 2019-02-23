@@ -162,7 +162,7 @@
         default: false
       },
       hint: {
-        type: string
+        type: String
       },
       color: {
         type: String
