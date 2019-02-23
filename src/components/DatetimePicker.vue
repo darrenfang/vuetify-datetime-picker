@@ -17,6 +17,11 @@
                 :hide-details="hideDetails"
                 :append-icon="appendIcon"
                 :prepend-icon="prependIcon"
+                :box="box"
+                :solo="solo"
+                :dark="dark"
+                :hint="hint"
+                :color="color"
                 readonly>
         </v-text-field>
 
@@ -142,6 +147,24 @@
         type: String
       },
       prependIcon: {
+        type: String
+      },
+      box: {
+        type: Boolean,
+        default: false
+      },
+      solo: {
+        type: Boolean,
+        default: false
+      },
+      dark: {
+        type: Boolean,
+        default: false
+      },
+      hint: {
+        type: string
+      },
+      color: {
         type: String
       }
     },

@@ -54,6 +54,11 @@ Once installed, it can be used in a template as simply as:
 | hideDetails        | Boolean | false | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields "Vuetify Docs") |
 | appendIcon         | String | | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields "Vuetify Docs") |
 | prependIcon        | String | | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields "Vuetify Docs") |
+| box                | Boolean | false | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields "Vuetify Docs") |
+| solo                | Boolean | false | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields "Vuetify Docs") |
+| dark                | Boolean | false | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields "Vuetify Docs") |
+| hint                | string | | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields "Vuetify Docs") |
+| color                | string | false | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields "Vuetify Docs") |
 
 ## Events
 
