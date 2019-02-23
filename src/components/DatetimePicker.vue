@@ -124,7 +124,7 @@
       },
       errorMessages: {
         type: [String, Array],
-        default: []
+        default: () => []
       },
       errorCount: {
         type: [Number, String],
@@ -143,7 +143,7 @@
       },
       prependIcon: {
         type: String
-      },
+      }
     },
     data () {
       return {
@@ -157,8 +157,9 @@
     created () {
       if (this.datetime instanceof Date) {
         this.selectedDatetime = this.datetime
-      } else if (this.datetime instanceof String) {
-        this.selectedDatetime = moment(this.datetimeString, this.format)
+      } else if (typeof this.datetime === 'string' || this.datetime instanceof String) {
+        // see https://stackoverflow.com/a/9436948
+        this.selectedDatetime = moment(this.datetime, this.format)
       }
     },
     computed: {
