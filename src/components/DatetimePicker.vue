@@ -19,7 +19,6 @@
                 :prepend-icon="prependIcon"
                 :box="box"
                 :solo="solo"
-                :dark="dark"
                 :hint="hint"
                 :color="color"
                 readonly>
@@ -154,10 +153,6 @@
         default: false
       },
       solo: {
-        type: Boolean,
-        default: false
-      },
-      dark: {
         type: Boolean,
         default: false
       },
