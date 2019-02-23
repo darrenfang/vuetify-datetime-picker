@@ -162,10 +162,12 @@
         default: false
       },
       hint: {
-        type: String
+        type: String,
+        default: () => undefined
       },
       color: {
-        type: String
+        type: String,
+        default: () => undefined
       }
     },
     data () {
