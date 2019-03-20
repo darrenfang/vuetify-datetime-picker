@@ -20,9 +20,9 @@
                 readonly>
         </v-text-field>
 
-        <v-card>
-            <v-card-text style="padding: 0;">
-                <v-tabs fixed-tabs v-model="activeTab">
+        <v-card flat>
+            <v-card-text class="px-0 py-0">
+                <v-tabs fixed-tabs v-model="activeTab" :slider-color="sliderColor | 'secondary'">
                     <v-tab key="calendar">
                         <slot name="dateIcon">
                             <v-icon>event</v-icon>
@@ -35,10 +35,12 @@
                     </v-tab>
                     <v-tab-item key="calendar">
                         <v-date-picker
+                                class="elevation-0"
                                 full-width
                                 v-model="datePart"
                                 scrollable
                                 :locale="locale"
+                                :color="color"
                                 actions>
                         </v-date-picker>
                     </v-tab-item>
@@ -46,10 +48,11 @@
                         <v-time-picker
                                 ref="timer"
                                 full-width
-                                class="v-time-picker-custom"
+                                class="v-time-picker-custom elevation-0"
                                 v-model="timePart"
                                 scrollable
                                 :format="timePickerFormat"
+                                :color="color"
                                 actions>
                         </v-time-picker>
                     </v-tab-item>
@@ -60,8 +63,8 @@
                 <slot name="actions"
                       :parent="this"
                 >
-                    <v-btn color="grey lighten-1" flat @click.native="clearHandler">{{clearText}}</v-btn>
-                    <v-btn color="green darken-1" flat @click="okHandler">{{okText}}</v-btn>
+                    <v-btn :color="clearButtonColor | 'grey lighten-1'" flat outline @click.native="clearHandler">{{clearText}}</v-btn>
+                    <v-btn :color="okButtonColor | 'green darken-1'" depressed @click="okHandler">{{okText}}</v-btn>
                 </slot>
             </v-card-actions>
         </v-card>
@@ -143,6 +146,18 @@
       },
       prependIcon: {
         type: String
+      },
+      color: {
+        type: String
+      },
+      clearButtonColor: {
+        type: String
+      },
+      okButtonColor: {
+        type: String
+      },
+      sliderColor: {
+        type: String
       }
     },
     data () {
@@ -154,7 +169,7 @@
         selectedDatetime: null
       }
     },
-    mounted () {
+    created () {
       if (this.datetime instanceof Date) {
         this.selectedDatetime = this.datetime
       } else if (typeof this.datetime === 'string' || this.datetime instanceof String) {
@@ -210,6 +225,17 @@
         this.$refs.timer.selectingHour = true
 
         this.$emit('input', null)
+      }
+    },
+    watch: {
+      display: {
+        handler () {
+          if (this.display) {
+            if (!this.datetime) {
+              this.selectedDatetime = null
+            }
+          }
+        }
       }
     }
   }
