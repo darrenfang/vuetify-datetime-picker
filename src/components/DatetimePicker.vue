@@ -154,7 +154,7 @@
         selectedDatetime: null
       }
     },
-    created () {
+    mounted () {
       if (this.datetime instanceof Date) {
         this.selectedDatetime = this.datetime
       } else if (typeof this.datetime === 'string' || this.datetime instanceof String) {
