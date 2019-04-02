@@ -39,6 +39,7 @@
                                 v-model="datePart"
                                 scrollable
                                 :locale="locale"
+                                :first-day-of-week="firstDayOfWeek"
                                 actions>
                         </v-date-picker>
                     </v-tab-item>
@@ -97,6 +98,10 @@
       format: {
         type: String,
         default: 'YYYY-MM-DD HH:mm:ss'
+      },
+      firstDayOfWeek: {
+        type: [String, Number],
+        default: 0
       },
       timePickerFormat: {
         type: String,
