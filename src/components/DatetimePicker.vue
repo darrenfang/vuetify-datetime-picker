@@ -8,6 +8,9 @@
         <v-text-field
                 slot="activator"
                 :label="label"
+                :outline="outline"
+                :box="box"
+                :solo="solo"
                 :value="formattedDatetime"
                 :disabled="disabled"
                 :loading="loading"
@@ -85,6 +88,18 @@
       datetime: {
         type: [Date, String],
         default: null
+      },
+      outline: {
+        type: Boolean,
+        default: false
+      },
+      box: {
+        type: Boolean,
+        default: false
+      },
+      solo: {
+        type: Boolean,
+        default: false
       },
       label: {
         type: String,
