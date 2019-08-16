@@ -5,8 +5,9 @@
             full-width
             :width="width"
             :disabled="disabled">
+        <template v-slot:activator="{ on }">
         <v-text-field
-                slot="activator"
+                v-on="on"
                 :label="label"
                 :value="formattedDatetime"
                 :disabled="disabled"
@@ -19,6 +20,7 @@
                 :prepend-icon="prependIcon"
                 readonly>
         </v-text-field>
+        </template>
 
         <v-card>
             <v-card-text style="padding: 0;">

@@ -50,6 +50,6 @@
   "dependencies": {
     "moment": "^2.22.2",
     "vue": "^2.3.0",
-    "vuetify": "^1.1.4"
+    "vuetify": "^2.0.7"
   }
 }
