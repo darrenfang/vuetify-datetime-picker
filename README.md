@@ -68,3 +68,24 @@ Once installed, it can be used in a template as simply as:
 | dateIcon   | Slot to put custom icon in the date tab.  |
 | timeIcon   | Slot to put custom icon in the time tab.  |
 | actions    | Slot to put custom buttons in the dialog. |
+
+## Issues
+
+### [Unknown custom element](https://github.com/darrenfang/vuetify-datetime-picker/issues/26 "Unknown custom element")
+
+Need a devDependencies of `@nuxtjs/vuetify@0.5.7` when use `vuetify@1.5.x`
+
+```shell
+yarn add -D  @nuxtjs/vuetify@0.5.7
+```
+
+Modify `nuxt.config.js`:
+
+```js
+  devModules: [
+    // Doc: https://github.com/nuxt-community/eslint-module
+    '@nuxtjs/vuetify'
+  ]
+```
+
+More information: [Module for Vuetify 1.5.x](https://github.com/nuxt-community/vuetify-module/tree/0.x)
