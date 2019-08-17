@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const basicConfig = require('./webpack.base.config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 const resolve = dir => join(__dirname, '..', dir)
 
@@ -20,6 +21,7 @@ module.exports = merge(basicConfig, {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new VuetifyLoaderPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'src/index.html',

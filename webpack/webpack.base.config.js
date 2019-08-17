@@ -1,7 +1,6 @@
 const {join} = require('path')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 const resolve = dir => join(__dirname, '..', dir)
 
@@ -82,8 +81,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new VueLoaderPlugin(),
-    new VuetifyLoaderPlugin()
+    new VueLoaderPlugin()
   ],
   resolve: {
     extensions: ['.js', '.vue', '.json', '.css', '.less', '.styl'],
