@@ -1,12 +1,12 @@
 {
   "name": "vuetify-datetime-picker",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "DatetimePicker component for Vuetify.js.",
   "main": "dist/index.js",
   "scripts": {
     "dev": "webpack-dev-server --config webpack/webpack.dev.config.js",
     "build": "webpack --config webpack/webpack.build.config.js --progress --profile --colors",
-    "deploy": "npm run build && npm publish --registry https://registry.npmjs.org/"
+    "deploy": "npm run build && npm publish --registry https://registry.npmjs.org/ --tag=legacy"
   },
   "author": "Darren Fang <idarrenfang@gmail.com>",
   "license": "MIT",
