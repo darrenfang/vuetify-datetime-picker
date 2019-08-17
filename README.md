@@ -8,11 +8,11 @@ DatetimePicker component for Vuetify.js.
 ## Installation
 
 ```shell
-npm install --save vuetify-datetime-picker
+npm install --save vuetify-datetime-picker@legacy
 
 or
 
-yarn add vuetify-datetime-picker
+yarn add vuetify-datetime-picker@legacy
 ```
 
 ```js
