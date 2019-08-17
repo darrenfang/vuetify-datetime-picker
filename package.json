@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --config webpack/webpack.dev.config.js",
     "build": "webpack --config webpack/webpack.build.config.js --progress --profile --colors",
-    "deploy": "npm run build && npm publish --registry https://registry.npmjs.org/"
+    "deploy": "npm run build && npm publish --registry https://registry.npmjs.org/",
+    "docs": "webpack --config webpack/webpack.docs.config.js --progress --profile --colors"
   },
   "author": "Darren Fang <idarrenfang@gmail.com>",
   "license": "MIT",

@@ -11,8 +11,20 @@ jobs:
       - run: echo "$PUBLIC_REGISTRY:_authToken=$PUBLIC_REGISTRY_TOKEN" >> ~/.npmrc
       - checkout
       - run: yarn install
-      - run: npm run deploy
-
+      - run: yarn deploy
+  docs-deploy:
+    <<: *defaults
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "01:d4:20:47:76:5b:80:99:96:2b:c4:20:54:ba:c4:d8"
+      - checkout
+      - run: yarn install
+      - run: yarn docs
+      - run: yarn global add gh-pages
+      - run: git config user.email "circleci@circleci.com"
+      - run: git config user.name "circleci"
+      - run: npx gh-pages --dist docs
 workflows:
   version: 2
 
@@ -20,3 +32,4 @@ workflows:
     jobs:
       - build:
           context: NPM
+      - docs-deploy
