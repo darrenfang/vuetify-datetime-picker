@@ -1,71 +1,72 @@
 <template>
-  <v-dialog
-    v-model="display"
-    lazy
-    full-width
-    :width="width"
-    :disabled="disabled">
-    <v-text-field
-      slot="activator"
-      :label="label"
-      :value="formattedDatetime"
-      :disabled="disabled"
-      :loading="loading"
-      :error-messages="errorMessages"
-      :error-count="errorCount"
-      :error="error"
-      :hide-details="hideDetails"
-      :append-icon="appendIcon"
-      :prepend-icon="prependIcon"
-      readonly>
-    </v-text-field>
+    <v-dialog
+            v-model="display"
+            full-width
+            :width="width"
+            :disabled="disabled">
+        <template v-slot:activator="{ on }">
+        <v-text-field
+                v-on="on"
+                :label="label"
+                :value="formattedDatetime"
+                :disabled="disabled"
+                :loading="loading"
+                :error-messages="errorMessages"
+                :error-count="errorCount"
+                :error="error"
+                :hide-details="hideDetails"
+                :append-icon="appendIcon"
+                :prepend-icon="prependIcon"
+                readonly>
+        </v-text-field>
+        </template>
 
-    <v-card>
-      <v-card-text style="padding: 0;">
-        <v-tabs fixed-tabs v-model="activeTab">
-          <v-tab key="calendar">
-            <slot name="dateIcon">
-              <v-icon>event</v-icon>
-            </slot>
-          </v-tab>
-          <v-tab key="timer" :disabled="!dateSelected">
-            <slot name="timeIcon">
-              <v-icon>access_time</v-icon>
-            </slot>
-          </v-tab>
-          <v-tab-item key="calendar">
-            <v-date-picker
-              full-width
-              v-model="datePart"
-              scrollable
-              :locale="locale"
-              actions>
-            </v-date-picker>
-          </v-tab-item>
-          <v-tab-item key="timer">
-            <v-time-picker
-              ref="timer"
-              full-width
-              class="v-time-picker-custom"
-              v-model="timePart"
-              scrollable
-              :format="timePickerFormat"
-              actions>
-            </v-time-picker>
-          </v-tab-item>
-        </v-tabs>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <slot name="actions"
-              :parent="this"
-        >
-          <v-btn color="grey lighten-1" flat @click.native="clearHandler">{{clearText}}</v-btn>
-          <v-btn color="green darken-1" flat @click="okHandler">{{okText}}</v-btn>
-        </slot>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+        <v-card>
+            <v-card-text style="padding: 0;">
+                <v-tabs fixed-tabs v-model="activeTab">
+                    <v-tab key="calendar">
+                        <slot name="dateIcon">
+                            <v-icon>event</v-icon>
+                        </slot>
+                    </v-tab>
+                    <v-tab key="timer" :disabled="!dateSelected">
+                        <slot name="timeIcon">
+                            <v-icon>access_time</v-icon>
+                        </slot>
+                    </v-tab>
+                    <v-tab-item key="calendar">
+                        <v-date-picker
+                                full-width
+                                v-model="datePart"
+                                scrollable
+                                :locale="locale"
+                                actions>
+                        </v-date-picker>
+                    </v-tab-item>
+                    <v-tab-item key="timer">
+                        <v-time-picker
+                                ref="timer"
+                                full-width
+                                class="v-time-picker-custom"
+                                v-model="timePart"
+                                scrollable
+                                :format="timePickerFormat"
+                                actions>
+                        </v-time-picker>
+                    </v-tab-item>
+                </v-tabs>
+            </v-card-text>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <slot name="actions"
+                      :parent="this"
+                >
+                    <v-btn color="grey lighten-1" text @click.native="clearHandler">{{clearText}}</v-btn>
+                    <v-btn color="green darken-1" text @click="okHandler">{{okText}}</v-btn>
+                </slot>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
 </template>
 
 <script>
