@@ -5,6 +5,8 @@
 
 DatetimePicker component for Vuetify.js.
 
+[Use this for Vuetify 1.5.x.](https://github.com/darrenfang/vuetify-datetime-picker/tree/v1.x "Use this for Vuetify 1.5.x.")
+
 ## Installation
 
 ```shell
