@@ -1,6 +1,7 @@
 const {join} = require('path')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 const resolve = dir => join(__dirname, '..', dir)
 
@@ -23,6 +24,21 @@ module.exports = {
       {
         test: /\.(less)$/,
         loader: 'vue-style-loader!css-loader!less-loader'
+      },
+      {
+        test: /\.s(c|a)ss$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass'),
+              fiber: require('fibers'),
+              indentedSyntax: true // optional
+            }
+          }
+        ]
       },
       {
         enforce: "pre",
@@ -66,7 +82,8 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new VuetifyLoaderPlugin()
   ],
   resolve: {
     extensions: ['.js', '.vue', '.json', '.css', '.less', '.styl'],

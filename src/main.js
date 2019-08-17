@@ -1,15 +1,10 @@
-import 'vuetify/src/stylus/main.styl'
+import 'vuetify/src/styles/main.sass'
 import './stylus/main.styl'
 import Vue from 'vue'
-import Vuetify from 'vuetify'
+import vuetify from './plugins/vuetify' // path to vuetify export
 import App from './app'
-import DatetimePicker from './index'
 
-Vue.use(Vuetify)
-Vue.use(DatetimePicker)
-
-/* eslint no-unused-vars: "off" */
-const app = new Vue({
-  el: '#app',
-  ...App
-})
+new Vue({
+  vuetify,
+  render: h => h(App)
+}).$mount('#app')
