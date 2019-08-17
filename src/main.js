@@ -3,7 +3,7 @@ import './stylus/main.styl'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import App from './app'
-import DatetimePicker from '~components/index'
+import DatetimePicker from './index'
 
 Vue.use(Vuetify)
 Vue.use(DatetimePicker)

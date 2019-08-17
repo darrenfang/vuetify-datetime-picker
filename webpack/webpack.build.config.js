@@ -1,32 +1,25 @@
-const { join } = require('path')
+const {join} = require('path')
 const merge = require('webpack-merge')
 const basicConfig = require('./webpack.base.config')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const resolve = dir => join(__dirname, '..', dir)
 
 module.exports = merge(basicConfig, {
-  entry: {
-    app: './src/components/index.js'
-  },
+  mode: 'production',
   devtool: 'source-map',
+  entry: {
+    app: './src/index.js'
+  },
   output: {
     path: resolve('dist'),
     filename: 'index.js',
-    library: 'vuetify-datetime-picker',
-    libraryTarget: 'umd'
+    library: 'VuetifyDatetimePicker',
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
+    globalObject: `(typeof self !== 'undefined' ? self : this)`,
+    libraryExport: 'default'
   },
-  module: {
-    rules: [
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader'
-      }
-    ]
-  },
-  plugins: [
-    new CleanWebpackPlugin(['dist'], {
-      root: resolve('./')
-    })
-  ]
+  externals: {
+    moment: 'moment'
+  }
 })

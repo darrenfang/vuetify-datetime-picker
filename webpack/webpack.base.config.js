@@ -1,11 +1,10 @@
 const {join} = require('path')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const resolve = dir => join(__dirname, '..', dir)
 
 module.exports = {
-  externals: {
-    moment: 'moment'
-  },
   output: {
     filename: 'bundle.js',
     path: resolve('dist'),
@@ -26,18 +25,27 @@ module.exports = {
         loader: 'vue-style-loader!css-loader!less-loader'
       },
       {
+        enforce: "pre",
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [
-          'babel-loader',
-          'eslint-loader'
-        ]
+        loader: "eslint-loader"
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
       },
       {
         enforce: 'pre',
         test: /\.vue$/,
         loader: 'eslint-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
@@ -56,6 +64,10 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new VueLoaderPlugin()
+  ],
   resolve: {
     extensions: ['.js', '.vue', '.json', '.css', '.less', '.styl'],
     modules: [resolve('src'), 'node_modules'],
