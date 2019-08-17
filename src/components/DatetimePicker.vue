@@ -93,7 +93,7 @@
       },
       width: {
         type: Number,
-        default: 320
+        default: 340
       },
       format: {
         type: String,
@@ -166,30 +166,30 @@
     computed: {
       datePart: {
         get () {
-          let val = this.selectedDatetime ? moment(this.selectedDatetime).format(DEFAULT_DATE_FORMAT) : ''
+          const val = this.selectedDatetime ? moment(this.selectedDatetime).format(DEFAULT_DATE_FORMAT) : ''
           return val
         },
         set (val) {
           this.dateSelected = true
           this.activeTab = 1
 
-          let date = moment(val, DEFAULT_DATE_FORMAT)
-          let hour = this.selectedDatetime ? moment(this.selectedDatetime).hour() : 0
-          let minute = this.selectedDatetime ? moment(this.selectedDatetime).minute() : 0
-          let input = moment().year(date.year()).month(date.month()).date(date.date()).hour(hour).minute(minute).second(0)
+          const date = moment(val, DEFAULT_DATE_FORMAT)
+          const hour = this.selectedDatetime ? moment(this.selectedDatetime).hour() : 0
+          const minute = this.selectedDatetime ? moment(this.selectedDatetime).minute() : 0
+          const input = moment().year(date.year()).month(date.month()).date(date.date()).hour(hour).minute(minute).second(0)
           this.selectedDatetime = input.toDate()
         }
       },
       timePart: {
         get () {
-          let val = this.selectedDatetime ? moment(this.selectedDatetime).format(DEFAULT_TIME_FORMAT) : DEFAULT_TIME
+          const val = this.selectedDatetime ? moment(this.selectedDatetime).format(DEFAULT_TIME_FORMAT) : DEFAULT_TIME
           return val
         },
         set (val) {
           this.timeSelected = true
 
-          let time = moment(val, DEFAULT_TIME_FORMAT)
-          let input = moment(this.selectedDatetime).hour(time.hour()).minute(time.minute()).second(0)
+          const time = moment(val, DEFAULT_TIME_FORMAT)
+          const input = moment(this.selectedDatetime).hour(time.hour()).minute(time.minute()).second(0)
           this.selectedDatetime = input.toDate()
         }
       },

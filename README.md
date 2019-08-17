@@ -41,7 +41,7 @@ Once installed, it can be used in a template as simply as:
 | datetime (model)   | Date/String   |                     | Time picker model.                                                                     |
 | disabled           | Boolean       | false               | Input is disabled.                                                                     |
 | label              | string        |                     | Sets input label.                                                                      |
-| width              | Number        | 320                 | The width of the content.                                                              |
+| width              | Number        | 340                 | The width of the content.                                                              |
 | format             | string        | YYYY-MM-DD HH:mm:ss | Defines the format of a datetime displayed in field.                                   |
 | timePickerFormat   | string        | 24hr                | Defines the format of a time displayed in picker. Available options are ampm and 24hr. |
 | locale             | string        | en-us               | Sets the locale. Accepts a string with a BCP 47 language tag.                          |
