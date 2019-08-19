@@ -1,49 +1,22 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true,
-        "node": true
-    },
-    "extends": [
-        "plugin:vue/essential",
-        "standard"
-    ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "vue"
-    ],
-    "rules": {
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "indent": [
-            "error",
-            2
-        ],
-        "vue/script-indent": [
-            "error",
-            2,
-            {
-                "baseIndent": 1
-            }
-        ]
-    },
-    "overrides": [
-        {
-            "files": [
-                "*.vue"
-            ],
-            "rules": {
-                "indent": "off"
-            }
-        }
-    ]
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": ["plugin:vue/essential", "standard"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["vue"],
+  "rules": {
+    "quotes": ["error", "single"],
+    "indent": ["error", 2],
+    "space-before-function-paren": 0
+  }
 }

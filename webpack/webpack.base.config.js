@@ -1,5 +1,5 @@
-const {join} = require('path')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const { join } = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const resolve = dir => join(__dirname, '..', dir)
@@ -40,10 +40,10 @@ module.exports = {
         ]
       },
       {
-        enforce: "pre",
+        enforce: 'pre',
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "eslint-loader"
+        loader: 'eslint-loader'
       },
       {
         test: /\.js$/,
@@ -79,10 +79,7 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new VueLoaderPlugin()
-  ],
+  plugins: [new CleanWebpackPlugin(), new VueLoaderPlugin()],
   resolve: {
     extensions: ['.js', '.vue', '.json', '.css', '.less', '.styl'],
     modules: [resolve('src'), 'node_modules'],
