@@ -43,6 +43,7 @@
               scrollable
               :format="timePickerFormat"
               actions
+              :use-seconds="useSeconds"
             >
             </v-time-picker>
           </v-tab-item>
@@ -63,8 +64,8 @@
 import moment from 'moment'
 
 const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD'
-const DEFAULT_TIME_FORMAT = 'HH:mm'
-const DEFAULT_TIME = '00:00'
+const DEFAULT_TIME_FORMAT = 'HH:mm:ss'
+const DEFAULT_TIME = '00:00:00'
 
 export default {
   name: 'v-datetime-picker',
@@ -134,6 +135,10 @@ export default {
     },
     prependIcon: {
       type: String
+    },
+    useSeconds: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -188,7 +193,7 @@ export default {
         const input = moment(this.selectedDatetime)
           .hour(time.hour())
           .minute(time.minute())
-          .second(0)
+          .second(time.second())
         this.selectedDatetime = input.toDate()
       }
     },

@@ -40,6 +40,12 @@
           </v-datetime-picker>
         </v-flex>
       </v-layout>
+      <v-layout row justify-center>
+        <v-flex xs4>
+          <span class="subheading">Select Seconds</span>
+          <v-datetime-picker v-model="datetime" use-seconds></v-datetime-picker>
+        </v-flex>
+      </v-layout>
     </v-container>
   </v-app>
 </template>
