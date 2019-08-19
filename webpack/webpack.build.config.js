@@ -1,25 +1,25 @@
-const {join} = require('path')
-const merge = require('webpack-merge')
-const basicConfig = require('./webpack.base.config')
+const { join } = require("path");
+const merge = require("webpack-merge");
+const basicConfig = require("./webpack.base.config");
 
-const resolve = dir => join(__dirname, '..', dir)
+const resolve = dir => join(__dirname, "..", dir);
 
 module.exports = merge(basicConfig, {
-  mode: 'production',
-  devtool: 'source-map',
+  mode: "production",
+  devtool: "source-map",
   entry: {
-    app: './src/index.js'
+    app: "./src/index.js"
   },
   output: {
-    path: resolve('dist'),
-    filename: 'index.js',
-    library: 'VuetifyDatetimePicker',
-    libraryTarget: 'umd',
+    path: resolve("dist"),
+    filename: "index.js",
+    library: "VuetifyDatetimePicker",
+    libraryTarget: "umd",
     umdNamedDefine: true,
     globalObject: `(typeof self !== 'undefined' ? self : this)`,
-    libraryExport: 'default'
+    libraryExport: "default"
   },
   externals: {
-    moment: 'moment'
+    moment: "moment"
   }
-})
+});

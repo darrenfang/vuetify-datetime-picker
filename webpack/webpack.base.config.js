@@ -1,28 +1,28 @@
-const {join} = require('path')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const { join } = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
-const resolve = dir => join(__dirname, '..', dir)
+const resolve = dir => join(__dirname, "..", dir);
 
 module.exports = {
   output: {
-    filename: 'bundle.js',
-    path: resolve('dist'),
-    publicPath: '/'
+    filename: "bundle.js",
+    path: resolve("dist"),
+    publicPath: "/"
   },
   module: {
     rules: [
       {
         test: /\.(css)$/,
-        loader: 'vue-style-loader!css-loader'
+        loader: "vue-style-loader!css-loader"
       },
       {
         test: /\.(styl)$/,
-        loader: 'vue-style-loader!css-loader!stylus-loader'
+        loader: "vue-style-loader!css-loader!stylus-loader"
       },
       {
         test: /\.(less)$/,
-        loader: 'vue-style-loader!css-loader!less-loader'
+        loader: "vue-style-loader!css-loader!less-loader"
       },
       {
         enforce: "pre",
@@ -34,50 +34,47 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: "babel-loader"
         }
       },
       {
-        enforce: 'pre',
+        enforce: "pre",
         test: /\.vue$/,
-        loader: 'eslint-loader',
+        loader: "eslint-loader",
         exclude: /node_modules/
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: "vue-loader"
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: 'file-loader',
+        loader: "file-loader",
         query: {
-          name: 'font/[hash:8].[ext]'
+          name: "font/[hash:8].[ext]"
         }
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        loader: 'url-loader',
+        loader: "url-loader",
         query: {
           limit: 10000,
-          name: 'img/[hash:8].[ext]'
+          name: "img/[hash:8].[ext]"
         }
       }
     ]
   },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new VueLoaderPlugin()
-  ],
+  plugins: [new CleanWebpackPlugin(), new VueLoaderPlugin()],
   resolve: {
-    extensions: ['.js', '.vue', '.json', '.css', '.less', '.styl'],
-    modules: [resolve('src'), 'node_modules'],
+    extensions: [".js", ".vue", ".json", ".css", ".less", ".styl"],
+    modules: [resolve("src"), "node_modules"],
     alias: {
-      '~src': resolve('src'),
-      '~components': resolve('src/components'),
-      '~pages': resolve('src/pages'),
-      '~assets': resolve('src/assets'),
-      '~store': resolve('src/store'),
-      '~static': resolve('src/static')
+      "~src": resolve("src"),
+      "~components": resolve("src/components"),
+      "~pages": resolve("src/pages"),
+      "~assets": resolve("src/assets"),
+      "~store": resolve("src/store"),
+      "~static": resolve("src/static")
     }
   }
-}
+};
