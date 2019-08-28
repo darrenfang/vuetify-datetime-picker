@@ -32,7 +32,7 @@
             </slot>
           </v-tab>
           <v-tab-item key="calendar">
-            <v-date-picker full-width v-model="datePart" scrollable :locale="locale" actions></v-date-picker>
+            <v-date-picker full-width v-model="datePart" scrollable :locale="locale" :first-day-of-week="firstDayOfWeek" actions></v-date-picker>
           </v-tab-item>
           <v-tab-item key="timer">
             <v-time-picker
@@ -97,6 +97,10 @@ export default {
     locale: {
       type: String,
       default: 'en-us'
+    },
+    firstDayOfWeek: {
+      type: [String, Number],
+      default: 0
     },
     clearText: {
       type: String,
