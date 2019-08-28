@@ -15,6 +15,9 @@
         :prepend-icon="prependIcon"
         readonly
       >
+        <template v-slot:append v-if="clearable && !!datetime">
+          <v-icon @click="$emit('clear')">$vuetify.icons.clear</v-icon>
+        </template>
       </v-text-field>
     </template>
 
@@ -81,6 +84,10 @@ export default {
     label: {
       type: String,
       default: ''
+    },
+    clearable: {
+      type: Boolean,
+      default: false
     },
     placeholder: {
       type: String,
