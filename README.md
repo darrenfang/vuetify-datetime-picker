@@ -47,6 +47,7 @@ Once installed, it can be used in a template as simply as:
 | format           | string        | YYYY-MM-DD HH:mm:ss | Defines the format of a datetime displayed in field.                                    |
 | timePickerFormat | string        | 24hr                | Defines the format of a time displayed in picker. Available options are ampm and 24hr.  |
 | locale           | string        | en-us               | Sets the locale. Accepts a string with a BCP 47 language tag.                           |
+| firstDayOfWeek   | string/number | 0                   | Sets the first day of the week, starting with 0 for Sunday.                             |
 | okText           | string        | OK                  | Sets the text of the ok button.                                                         |
 | clearText        | string        | CLEAR               | Sets the text of the clear button.                                                      |
 | loading          | Boolean       | false               | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields 'Vuetify Docs') |
