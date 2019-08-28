@@ -220,7 +220,6 @@ export default {
     clearHandler() {
       this.display = false
       this.activeTab = 0
-      this.$refs.timer.selectingHour = true
 
       this.$emit('input', null)
     }
