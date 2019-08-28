@@ -43,6 +43,7 @@ Once installed, it can be used in a template as simply as:
 | datetime (model) | Date/String   |                     | Time picker model.                                                                      |
 | disabled         | Boolean       | false               | Input is disabled.                                                                      |
 | label            | string        |                     | Sets input label.                                                                       |
+| placeholder      | string        |                     | Sets displayed value when the datetime is empty.                                        |
 | width            | Number        | 340                 | The width of the content.                                                               |
 | format           | string        | YYYY-MM-DD HH:mm:ss | Defines the format of a datetime displayed in field.                                    |
 | timePickerFormat | string        | 24hr                | Defines the format of a time displayed in picker. Available options are ampm and 24hr.  |

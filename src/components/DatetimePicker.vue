@@ -82,6 +82,10 @@ export default {
       type: String,
       default: ''
     },
+    placeholder: {
+      type: String,
+      default: ''
+    },
     width: {
       type: Number,
       default: 340
@@ -202,7 +206,7 @@ export default {
       }
     },
     formattedDatetime() {
-      return this.datetime ? moment(this.datetime).format(this.format) : ''
+      return this.datetime ? moment(this.datetime).format(this.format) : this.placeholder
     }
   },
   methods: {
