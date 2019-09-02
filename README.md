@@ -22,7 +22,7 @@ yarn add vuetify-datetime-picker
 
 ```js
 import Vue from 'vue'
-import DatetimePicker from 'vuetify-datetime-picker'
+import DatetimePicker from 'vuetify-datetime-picker/src/'
 import 'vuetify-datetime-picker/src/stylus/main.styl'
 
 Vue.use(DatetimePicker)
