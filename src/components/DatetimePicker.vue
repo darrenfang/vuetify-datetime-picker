@@ -7,6 +7,7 @@
         :value="formattedDatetime"
         :disabled="disabled"
         :loading="loading"
+        :rules="rules"
         :error-messages="errorMessages"
         :error-count="errorCount"
         :error="error"
@@ -113,6 +114,10 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    },
+    rules: {
+      type: Array,
+      default: () => [],
     },
     errorMessages: {
       type: [String, Array],
