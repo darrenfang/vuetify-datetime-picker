@@ -1,20 +1,20 @@
 <template>
-  <v-dialog v-model="display" full-width :width="width" :disabled="disabled">
+  <v-dialog v-model="display" :width="dialogWidth">
     <template v-slot:activator="{ on }">
       <v-text-field
-        v-on="on"
-        :label="label"
-        :value="formattedDatetime"
+        v-bind="textFieldProps"
         :disabled="disabled"
         :loading="loading"
-        :error-messages="errorMessages"
-        :error-count="errorCount"
-        :error="error"
-        :hide-details="hideDetails"
-        :append-icon="appendIcon"
-        :prepend-icon="prependIcon"
+        :label="label"
+        :value="formattedDatetime"
+        v-on="on"
         readonly
       >
+        <template v-slot:progress>
+          <slot name="progress">
+            <v-progress-linear color="primary" indeterminate absolute height="2"></v-progress-linear>
+          </slot>
+        </template>
       </v-text-field>
     </template>
 
@@ -26,26 +26,22 @@
               <v-icon>event</v-icon>
             </slot>
           </v-tab>
-          <v-tab key="timer" :disabled="!dateSelected">
+          <v-tab key="timer" :disabled="dateSelected">
             <slot name="timeIcon">
               <v-icon>access_time</v-icon>
             </slot>
           </v-tab>
           <v-tab-item key="calendar">
-            <v-date-picker full-width v-model="datePart" scrollable :locale="locale" actions></v-date-picker>
+            <v-date-picker v-model="date" v-bind="datePickerProps" @input="showTimePicker" full-width></v-date-picker>
           </v-tab-item>
           <v-tab-item key="timer">
             <v-time-picker
               ref="timer"
-              full-width
               class="v-time-picker-custom"
-              v-model="timePart"
-              scrollable
-              :format="timePickerFormat"
-              actions
-              :use-seconds="useSeconds"
-            >
-            </v-time-picker>
+              v-model="time"
+              v-bind="timePickerProps"
+              full-width
+            ></v-time-picker>
           </v-tab-item>
         </v-tabs>
       </v-card-text>
@@ -61,11 +57,15 @@
 </template>
 
 <script>
-import moment from 'moment'
+import { format, parse } from 'date-fns'
 
-const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD'
-const DEFAULT_TIME_FORMAT = 'HH:mm:ss'
+const DEFAULT_DATE = ''
 const DEFAULT_TIME = '00:00:00'
+const DEFAULT_DATE_FORMAT = 'yyyy-MM-dd'
+const DEFAULT_TIME_FORMAT = 'HH:mm:ss'
+const DEFAULT_DIALOG_WIDTH = 340
+const DEFAULT_CLEAR_TEXT = 'CLEAR'
+const DEFAULT_OK_TEXT = 'OK'
 
 export default {
   name: 'v-datetime-picker',
@@ -78,143 +78,115 @@ export default {
       type: [Date, String],
       default: null
     },
+    disabled: {
+      type: Boolean
+    },
+    loading: {
+      type: Boolean
+    },
     label: {
       type: String,
       default: ''
     },
-    width: {
+    dialogWidth: {
       type: Number,
-      default: 340
+      default: DEFAULT_DIALOG_WIDTH
     },
-    format: {
+    dateFormat: {
       type: String,
-      default: 'YYYY-MM-DD HH:mm:ss'
+      default: DEFAULT_DATE_FORMAT
     },
-    timePickerFormat: {
+    timeFormat: {
       type: String,
-      default: '24hr'
-    },
-    locale: {
-      type: String,
-      default: 'en-us'
+      default: 'HH:mm'
     },
     clearText: {
       type: String,
-      default: 'CLEAR'
+      default: DEFAULT_CLEAR_TEXT
     },
     okText: {
       type: String,
-      default: 'OK'
+      default: DEFAULT_OK_TEXT
     },
-    disabled: {
-      type: Boolean,
-      default: false
+    textFieldProps: {
+      type: Object
     },
-    loading: {
-      type: Boolean,
-      default: false
+    datePickerProps: {
+      type: Object
     },
-    errorMessages: {
-      type: [String, Array],
-      default: () => []
-    },
-    errorCount: {
-      type: [Number, String],
-      default: 1
-    },
-    error: {
-      type: Boolean,
-      default: false
-    },
-    hideDetails: {
-      type: Boolean,
-      default: false
-    },
-    appendIcon: {
-      type: String
-    },
-    prependIcon: {
-      type: String
-    },
-    useSeconds: {
-      type: Boolean,
-      default: false
+    timePickerProps: {
+      type: Object
     }
   },
   data() {
     return {
       display: false,
-      dateSelected: false,
-      timeSelected: false,
       activeTab: 0,
-      selectedDatetime: null
+      date: DEFAULT_DATE,
+      time: DEFAULT_TIME
     }
   },
   created() {
+    if (!this.datetime) {
+      return
+    }
+
+    let initDateTime
     if (this.datetime instanceof Date) {
-      this.selectedDatetime = this.datetime
+      initDateTime = this.datetime
     } else if (typeof this.datetime === 'string' || this.datetime instanceof String) {
       // see https://stackoverflow.com/a/9436948
-      this.selectedDatetime = moment(this.datetime, this.format)
+      initDateTime = parse(this.datetime, this.dateTimeFormat, new Date())
     }
+
+    this.date = format(initDateTime, DEFAULT_DATE_FORMAT)
+    this.time = format(initDateTime, DEFAULT_TIME_FORMAT)
   },
   computed: {
-    datePart: {
-      get() {
-        const val = this.selectedDatetime ? moment(this.selectedDatetime).format(DEFAULT_DATE_FORMAT) : ''
-        return val
-      },
-      set(val) {
-        this.dateSelected = true
-        this.activeTab = 1
-
-        const date = moment(val, DEFAULT_DATE_FORMAT)
-        const hour = this.selectedDatetime ? moment(this.selectedDatetime).hour() : 0
-        const minute = this.selectedDatetime ? moment(this.selectedDatetime).minute() : 0
-        const input = moment()
-          .year(date.year())
-          .month(date.month())
-          .date(date.date())
-          .hour(hour)
-          .minute(minute)
-          .second(0)
-        this.selectedDatetime = input.toDate()
-      }
+    dateTimeFormat() {
+      return this.dateFormat + ' ' + this.timeFormat
     },
-    timePart: {
-      get() {
-        const val = this.selectedDatetime ? moment(this.selectedDatetime).format(DEFAULT_TIME_FORMAT) : DEFAULT_TIME
-        return val
-      },
-      set(val) {
-        this.timeSelected = true
-
-        const time = moment(val, DEFAULT_TIME_FORMAT)
-        const input = moment(this.selectedDatetime)
-          .hour(time.hour())
-          .minute(time.minute())
-          .second(time.second())
-        this.selectedDatetime = input.toDate()
-      }
+    defaultDateTimeFormat() {
+      return DEFAULT_DATE_FORMAT + ' ' + DEFAULT_TIME_FORMAT
     },
     formattedDatetime() {
-      return this.datetime ? moment(this.datetime).format(this.format) : ''
+      return this.selectedDatetime ? format(this.selectedDatetime, this.dateTimeFormat) : ''
+    },
+    selectedDatetime() {
+      if (this.date && this.time) {
+        let datetimeString = this.date + ' ' + this.time
+        if (this.time.length === 5) {
+          datetimeString += ':00'
+        }
+        return parse(datetimeString, this.defaultDateTimeFormat, new Date())
+      } else {
+        return null
+      }
+    },
+    dateSelected() {
+      return !this.date
     }
   },
   methods: {
     okHandler() {
-      this.display = false
-      this.activeTab = 0
-      this.$refs.timer.selectingHour = true
-
+      this.resetPicker()
       this.$emit('input', this.selectedDatetime)
     },
     clearHandler() {
+      this.resetPicker()
+      this.date = DEFAULT_DATE
+      this.time = DEFAULT_TIME
+      this.$emit('input', null)
+    },
+    resetPicker() {
       this.display = false
       this.activeTab = 0
-      this.$refs.timer.selectingHour = true
-
-      this.$emit('input', null)
+      if (this.$refs.timer) {
+        this.$refs.timer.selectingHour = true
+      }
+    },
+    showTimePicker() {
+      this.activeTab = 1
     }
   }
 }

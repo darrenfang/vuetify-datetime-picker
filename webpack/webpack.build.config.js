@@ -20,6 +20,6 @@ module.exports = merge(basicConfig, {
     libraryExport: 'default'
   },
   externals: {
-    moment: 'moment'
+    'date-fns': 'date-fns'
   }
 })

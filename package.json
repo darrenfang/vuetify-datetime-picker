@@ -1,8 +1,8 @@
 {
   "name": "vuetify-datetime-picker",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "DatetimePicker component for Vuetify.js.",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "scripts": {
     "dev": "webpack-dev-server --config webpack/webpack.dev.config.js",
     "build": "webpack --config webpack/webpack.build.config.js --progress --profile --colors",
@@ -51,7 +51,7 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "moment": "^2.24.0",
+    "date-fns": "^2.1.0",
     "vue": "^2.6.10",
     "vuetify": "^2.0.7"
   }
