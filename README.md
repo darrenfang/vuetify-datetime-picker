@@ -6,9 +6,9 @@
 
 DatetimePicker component for Vuetify.js.
 
-[Use this for Vuetify 1.5.x.](https://github.com/darrenfang/vuetify-datetime-picker/tree/v1.x 'Use this for Vuetify 1.5.x.')
-
 [Online Demo](http://darrenfang.github.io/vuetify-datetime-picker/ 'Online Demo')
+
+[Demo Source Code](https://github.com/darrenfang/vuetify-datetime-picker/blob/master/src/app.vue 'Demo Source Code')
 
 ## Installation
 
@@ -23,10 +23,12 @@ yarn add vuetify-datetime-picker
 ```js
 import Vue from 'vue'
 import DatetimePicker from 'vuetify-datetime-picker'
-import 'vuetify-datetime-picker/src/stylus/main.styl'
+// (Optional) import 'vuetify-datetime-picker/src/stylus/main.styl'
 
 Vue.use(DatetimePicker)
 ```
+
+If use the `main.styl`, you should configure the `stylus-loader` in `webpack.config.js`, or just ignore this style sheet.
 
 ## Usage
 
@@ -38,25 +40,20 @@ Once installed, it can be used in a template as simply as:
 
 ## Properties
 
-| Name             | Type          | Default Value       | Description                                                                             |
-| ---------------- | ------------- | ------------------- | --------------------------------------------------------------------------------------- |
-| datetime (model) | Date/String   |                     | Time picker model.                                                                      |
-| disabled         | Boolean       | false               | Input is disabled.                                                                      |
-| label            | string        |                     | Sets input label.                                                                       |
-| width            | Number        | 340                 | The width of the content.                                                               |
-| format           | string        | YYYY-MM-DD HH:mm:ss | Defines the format of a datetime displayed in field.                                    |
-| timePickerFormat | string        | 24hr                | Defines the format of a time displayed in picker. Available options are ampm and 24hr.  |
-| locale           | string        | en-us               | Sets the locale. Accepts a string with a BCP 47 language tag.                           |
-| okText           | string        | OK                  | Sets the text of the ok button.                                                         |
-| clearText        | string        | CLEAR               | Sets the text of the clear button.                                                      |
-| loading          | Boolean       | false               | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields 'Vuetify Docs') |
-| errorMessages    | String/Array  |                     | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields 'Vuetify Docs') |
-| errorCount       | Number/String | 1                   | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields 'Vuetify Docs') |
-| error            | Boolean       | false               | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields 'Vuetify Docs') |
-| hideDetails      | Boolean       | false               | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields 'Vuetify Docs') |
-| appendIcon       | String        |                     | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields 'Vuetify Docs') |
-| prependIcon      | String        |                     | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields 'Vuetify Docs') |
-| useSeconds       | Boolean       | false               | see [Vuetify Docs](https://vuetifyjs.com/zh-Hans/components/text-fields 'Vuetify Docs') |
+| Name             | Type        | Default Value | Description                                                                                                 |
+| ---------------- | ----------- | ------------- | ----------------------------------------------------------------------------------------------------------- |
+| datetime (model) | Date/String |               | Time picker model.                                                                                          |
+| disabled         | Boolean     | false         | Input is disabled.                                                                                          |
+| loading          | Boolean     | false         | Input is loading.                                                                                           |
+| label            | string      |               | Sets input label.                                                                                           |
+| dialogWidth      | Number      | 340           | The width of the dialog.                                                                                    |
+| dateFormat       | string      | yyyy-MM-dd    | Defines the format of a date.                                                                               |
+| timeFormat       | string      | HH:mm         | Defines the format of a time.                                                                               |
+| clearText        | string      | CLEAR         | Sets the text of the clear button.                                                                          |
+| okText           | string      | OK            | Sets the text of the ok button.                                                                             |
+| textFieldProps   | Object      |               | Text fields properties. See [Vuetify Docs](https://vuetifyjs.com/en/components/text-fields 'Vuetify Docs')  |
+| datePickerProps  | Object      |               | Date pickers properties.See [Vuetify Docs](https://vuetifyjs.com/en/components/date-pickers 'Vuetify Docs') |
+| timePickerProps  | Object      |               | Time pickers properties.See [Vuetify Docs](https://vuetifyjs.com/en/components/time-pickers 'Vuetify Docs') |
 
 ## Events
 
@@ -66,8 +63,9 @@ Once installed, it can be used in a template as simply as:
 
 ## Slots
 
-| Name     | Description                               |
-| -------- | ----------------------------------------- |
-| dateIcon | Slot to put custom icon in the date tab.  |
-| timeIcon | Slot to put custom icon in the time tab.  |
-| actions  | Slot to put custom buttons in the dialog. |
+| Name     | Description                                                                                 |
+| -------- | ------------------------------------------------------------------------------------------- |
+| dateIcon | Slot to put custom icon in the date tab.                                                    |
+| timeIcon | Slot to put custom icon in the time tab.                                                    |
+| actions  | Slot to put custom buttons in the dialog.                                                   |
+| progress | Slot for custom progress linear (displayed when loading prop is not equal to Boolean False) |
