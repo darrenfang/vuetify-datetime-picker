@@ -40,7 +40,7 @@
               class="v-time-picker-custom"
               v-model="time"
               v-bind="timePickerProps"
-              full-width
+              style="min-width: 100%"
             ></v-time-picker>
           </v-tab-item>
         </v-tabs>
