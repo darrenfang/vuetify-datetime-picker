@@ -39,8 +39,16 @@
               ref="timer"
               class="v-time-picker-custom"
               v-model="time"
-              v-bind="timePickerProps"
-              full-width
+              :picker="timePickerProps.picker"
+              :disabled="timePickerProps.disabled"
+              :readonly="timePickerProps.readonly"
+              :landscape="timePickerProps.landscape"
+              :ampmInTitle="timePickerProps.ampmInTitle"
+              :useSeconds="timePickerProps.useSeconds"
+              :format="timePickerProps.format"
+              :noTitle="timePickerProps.noTitle"
+              :scrollable="timePickerProps.scrollable"
+              style="min-width: 100%;"
             ></v-time-picker>
           </v-tab-item>
         </v-tabs>
