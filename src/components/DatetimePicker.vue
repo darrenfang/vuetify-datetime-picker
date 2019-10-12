@@ -19,7 +19,7 @@
     </template>
 
     <v-card>
-      <v-card-text style="padding: 0;">
+      <v-card-text class="px-0 py-0">
         <v-tabs fixed-tabs v-model="activeTab">
           <v-tab key="calendar">
             <slot name="dateIcon">
@@ -126,21 +126,8 @@ export default {
       time: DEFAULT_TIME
     }
   },
-  created() {
-    if (!this.datetime) {
-      return
-    }
-
-    let initDateTime
-    if (this.datetime instanceof Date) {
-      initDateTime = this.datetime
-    } else if (typeof this.datetime === 'string' || this.datetime instanceof String) {
-      // see https://stackoverflow.com/a/9436948
-      initDateTime = parse(this.datetime, this.dateTimeFormat, new Date())
-    }
-
-    this.date = format(initDateTime, DEFAULT_DATE_FORMAT)
-    this.time = format(initDateTime, DEFAULT_TIME_FORMAT)
+  mounted() {
+    this.init()
   },
   computed: {
     dateTimeFormat() {
@@ -168,6 +155,22 @@ export default {
     }
   },
   methods: {
+    init() {
+      if (!this.datetime) {
+        return
+      }
+
+      let initDateTime
+      if (this.datetime instanceof Date) {
+        initDateTime = this.datetime
+      } else if (typeof this.datetime === 'string' || this.datetime instanceof String) {
+        // see https://stackoverflow.com/a/9436948
+        initDateTime = parse(this.datetime, this.dateTimeFormat, new Date())
+      }
+
+      this.date = format(initDateTime, DEFAULT_DATE_FORMAT)
+      this.time = format(initDateTime, DEFAULT_TIME_FORMAT)
+    },
     okHandler() {
       this.resetPicker()
       this.$emit('input', this.selectedDatetime)
@@ -187,6 +190,11 @@ export default {
     },
     showTimePicker() {
       this.activeTab = 1
+    }
+  },
+  watch: {
+    datetime: function() {
+      this.init()
     }
   }
 }

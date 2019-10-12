@@ -16,6 +16,7 @@
               <v-flex xs4>
                 <v-datetime-picker v-model="nullDatetime"></v-datetime-picker>
               </v-flex>
+              <div>Datetime value: <span v-text="nullDatetime"></span></div>
             </v-expansion-panel-content>
           </v-expansion-panel>
 
@@ -25,6 +26,7 @@
               <v-flex xs4>
                 <v-datetime-picker v-model="datetime"></v-datetime-picker>
               </v-flex>
+              <div>Datetime value: <span v-text="datetime"></span></div>
             </v-expansion-panel-content>
           </v-expansion-panel>
 
@@ -34,6 +36,7 @@
               <v-flex xs4>
                 <v-datetime-picker v-model="datetimeString"></v-datetime-picker>
               </v-flex>
+              <div>Datetime value: <span v-text="datetimeString"></span></div>
             </v-expansion-panel-content>
           </v-expansion-panel>
 
@@ -65,6 +68,7 @@
               <v-flex xs4>
                 <v-datetime-picker v-model="datetime" disabled></v-datetime-picker>
               </v-flex>
+              <div>Datetime value: <span v-text="datetime"></span></div>
             </v-expansion-panel-content>
           </v-expansion-panel>
 
@@ -79,6 +83,7 @@
                   </template>
                 </v-datetime-picker>
               </v-flex>
+              <div>Datetime value: <span v-text="datetime"></span></div>
             </v-expansion-panel-content>
           </v-expansion-panel>
 
@@ -95,6 +100,7 @@
                   </template>
                 </v-datetime-picker>
               </v-flex>
+              <div>Datetime value: <span v-text="datetime"></span></div>
             </v-expansion-panel-content>
           </v-expansion-panel>
 
@@ -104,6 +110,7 @@
               <v-flex xs4>
                 <v-datetime-picker v-model="formattedDatetime" date-format="MM/dd/yyyy"></v-datetime-picker>
               </v-flex>
+              <div>Datetime value: <span v-text="formattedDatetime"></span></div>
             </v-expansion-panel-content>
           </v-expansion-panel>
 
@@ -118,6 +125,7 @@
                   time-format="HH:mm:ss"
                 ></v-datetime-picker>
               </v-flex>
+              <div>Datetime value: <span v-text="datetime"></span></div>
             </v-expansion-panel-content>
           </v-expansion-panel>
 
@@ -134,6 +142,7 @@
                   time-format="HH:mm:ss"
                 ></v-datetime-picker>
               </v-flex>
+              <div>Datetime value: <span v-text="datetime"></span></div>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
