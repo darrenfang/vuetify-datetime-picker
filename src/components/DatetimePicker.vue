@@ -157,6 +157,8 @@ export default {
   methods: {
     init() {
       if (!this.datetime) {
+        this.date = DEFAULT_DATE;
+        this.time = DEFAULT_TIME;
         return
       }
 
