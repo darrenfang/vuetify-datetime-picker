@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-container>
       <div class="mb-5">
         Get Source Code:
@@ -14,7 +14,7 @@
             <v-expansion-panel-header>Null Value</v-expansion-panel-header>
             <v-expansion-panel-content>
               <v-flex xs4>
-                <v-datetime-picker v-model="nullDatetime"></v-datetime-picker>
+                <v-datetime-picker color="blue-grey lighten-1" v-model="nullDatetime"></v-datetime-picker>
               </v-flex>
               <div>Datetime value: <span v-text="nullDatetime"></span></div>
             </v-expansion-panel-content>
