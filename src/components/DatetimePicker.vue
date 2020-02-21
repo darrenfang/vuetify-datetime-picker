@@ -20,7 +20,7 @@
 
         <v-card>
             <v-card-text class="px-0 py-0">
-                <v-tabs fixed-tabs v-model="activeTab">
+                <v-tabs :slider-color="tabsSliderColor" :background-color="tabsBackgroundColor" fixed-tabs v-model="activeTab">
                     <v-tab key="calendar">
                         <slot name="dateIcon">
                             <v-icon>event</v-icon>
@@ -132,6 +132,14 @@ export default {
     clearColor: {
       type: String,
       default: 'grey lighten-1'
+    },
+    tabsBackgroundColor: {
+      type: String,
+      default: ''
+    },
+    tabsSliderColor: {
+      type: String,
+      default: ''
     }
   },
   data() {
