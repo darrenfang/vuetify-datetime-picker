@@ -7,6 +7,8 @@
                     :loading="loading"
                     :label="label"
                     :value="formattedDatetime"
+                    :error="error"
+                    :error-messages="errorMessages"
                     v-on="on"
                     readonly
             >
@@ -20,7 +22,8 @@
 
         <v-card>
             <v-card-text class="px-0 py-0">
-                <v-tabs :slider-color="tabsSliderColor" :background-color="tabsBackgroundColor" fixed-tabs v-model="activeTab">
+                <v-tabs :slider-color="tabsSliderColor" :background-color="tabsBackgroundColor" fixed-tabs
+                        v-model="activeTab">
                     <v-tab key="calendar">
                         <slot name="dateIcon">
                             <v-icon>event</v-icon>
@@ -138,6 +141,14 @@ export default {
       default: ''
     },
     tabsSliderColor: {
+      type: String,
+      default: ''
+    },
+    error: {
+      type: Boolean,
+      default: false
+    },
+    errorMessages: {
       type: String,
       default: ''
     }
