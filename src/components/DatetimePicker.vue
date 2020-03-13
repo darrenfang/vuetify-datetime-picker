@@ -38,6 +38,8 @@
                         <v-date-picker v-model="date"
                                        v-bind="datePickerProps"
                                        :color="color"
+                                       :min="minDate"
+                                       :max="maxDate"
                                        @input="showTimePicker"
                                        full-width></v-date-picker>
                     </v-tab-item>
@@ -47,6 +49,8 @@
                                 class="v-time-picker-custom"
                                 v-model="time"
                                 v-bind="timePickerProps"
+                                :min="minTime"
+                                :max="maxTime"
                                 :color="color"
                                 full-width
                         ></v-time-picker>
@@ -65,7 +69,7 @@
 </template>
 
 <script>
-import { format, parse } from 'date-fns'
+import { format, parse, isSameDay } from 'date-fns'
 
 const DEFAULT_DATE = ''
 const DEFAULT_TIME = '00:00:00'
@@ -151,6 +155,14 @@ export default {
     errorMessages: {
       type: String,
       default: ''
+    },
+    min: {
+      type: Date,
+      default: null
+    },
+    max: {
+      type: Date,
+      default: null
     }
   },
   data() {
@@ -185,6 +197,35 @@ export default {
         return null
       }
     },
+
+    minDate() {
+      return this.min ? format(this.min, DEFAULT_DATE_FORMAT) : null
+    },
+
+    minTime() {
+      const { selectedDatetime, min } = this
+
+      if (selectedDatetime === null || min === null || !isSameDay(selectedDatetime, min)) {
+        return null
+      }
+
+      return format(min, DEFAULT_TIME_FORMAT)
+    },
+
+    maxDate() {
+      return this.max ? format(this.max, DEFAULT_DATE_FORMAT) : null
+    },
+
+    maxTime() {
+      const { selectedDatetime, max } = this
+
+      if (selectedDatetime === null || max === null || !isSameDay(selectedDatetime, max)) {
+        return null
+      }
+
+      return format(max, DEFAULT_TIME_FORMAT)
+    },
+
     dateSelected() {
       return !this.date
     }
