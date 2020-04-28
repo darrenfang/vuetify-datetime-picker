@@ -136,6 +136,7 @@
               <v-flex xs4>
                 <v-datetime-picker
                   v-model="datetime"
+                  :dialog-props="dialogProps"
                   :text-field-props="textFieldProps"
                   :date-picker-props="dateProps"
                   :time-picker-props="timeProps"
@@ -170,6 +171,9 @@ export default {
       timeProps: {
         useSeconds: true,
         ampmInTitle: true
+      },
+      dialogProps: {
+        persistent: true
       }
     }
   }
