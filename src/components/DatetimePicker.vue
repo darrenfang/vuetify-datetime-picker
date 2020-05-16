@@ -32,7 +32,14 @@
             </slot>
           </v-tab>
           <v-tab-item key="calendar">
-            <v-date-picker v-model="date" v-bind="datePickerProps" @input="showTimePicker" full-width></v-date-picker>
+            <v-date-picker 
+              v-model="date"
+              v-bind="datePickerProps" 
+              @input="showTimePicker" 
+              full-width
+              :min="minDate"
+              :max="maxDate"
+            ></v-date-picker>
           </v-tab-item>
           <v-tab-item key="timer">
             <v-time-picker
@@ -41,6 +48,8 @@
               v-model="time"
               v-bind="timePickerProps"
               full-width
+              :min="minTime"
+              :max="maxTime"
             ></v-time-picker>
           </v-tab-item>
         </v-tabs>
@@ -116,7 +125,19 @@ export default {
     },
     timePickerProps: {
       type: Object
-    }
+    },
+    minDate: {
+      type: String
+    },
+    maxDate: {
+      type: String
+    },
+    minTime: {
+      type: String
+    },
+    maxTime: {
+      type: String
+    },
   },
   data() {
     return {
