@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { format, parse } from 'date-fns'
+import { format } from 'date-fns'
 
 const DEFAULT_DATE = ''
 const DEFAULT_TIME = '00:00:00'
@@ -145,7 +145,7 @@ export default {
         if (this.time.length === 5) {
           datetimeString += ':00'
         }
-        return parse(datetimeString, this.defaultDateTimeFormat, new Date())
+        return new Date(datetimeString)
       } else {
         return null
       }
@@ -165,7 +165,7 @@ export default {
         initDateTime = this.datetime
       } else if (typeof this.datetime === 'string' || this.datetime instanceof String) {
         // see https://stackoverflow.com/a/9436948
-        initDateTime = parse(this.datetime, this.dateTimeFormat, new Date())
+        initDateTime = new Date(this.datetime)
       }
 
       this.date = format(initDateTime, DEFAULT_DATE_FORMAT)
