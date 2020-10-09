@@ -20,7 +20,7 @@
 
     <v-card>
       <v-card-text class="px-0 py-0">
-        <v-tabs fixed-tabs v-model="activeTab">
+        <v-tabs fixed-tabs v-model="activeTab" v-if="!withoutTime">
           <v-tab key="calendar">
             <slot name="dateIcon">
               <v-icon>event</v-icon>
@@ -44,11 +44,18 @@
             ></v-time-picker>
           </v-tab-item>
         </v-tabs>
+        <v-date-picker
+          v-if="withoutTime"
+          v-model="date"
+          v-bind="datePickerProps"
+          @input="showTimePicker"
+          full-width
+        ></v-date-picker>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
         <slot name="actions" :parent="this">
-          <v-btn color="grey lighten-1" text @click.native="clearHandler">{{ clearText }}</v-btn>
+          <v-btn color="grey lighten-1" text @click.native="clearHandler" v-if="clearText.length > 0">{{ clearText }}</v-btn>
           <v-btn color="green darken-1" text @click="okHandler">{{ okText }}</v-btn>
         </slot>
       </v-card-actions>
@@ -57,7 +64,7 @@
 </template>
 
 <script>
-import { format, parse } from 'date-fns'
+import { format, parse, parseISO } from 'date-fns'
 
 const DEFAULT_DATE = ''
 const DEFAULT_TIME = '00:00:00'
@@ -116,6 +123,14 @@ export default {
     },
     timePickerProps: {
       type: Object
+    },
+    useIso: {
+      type: Boolean,
+      default: false
+    },
+    withoutTime: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -131,7 +146,7 @@ export default {
   },
   computed: {
     dateTimeFormat() {
-      return this.dateFormat + ' ' + this.timeFormat
+      return this.withoutTime ? this.dateFormat : this.dateFormat + ' ' + this.timeFormat
     },
     defaultDateTimeFormat() {
       return DEFAULT_DATE_FORMAT + ' ' + DEFAULT_TIME_FORMAT
@@ -165,7 +180,11 @@ export default {
         initDateTime = this.datetime
       } else if (typeof this.datetime === 'string' || this.datetime instanceof String) {
         // see https://stackoverflow.com/a/9436948
-        initDateTime = parse(this.datetime, this.dateTimeFormat, new Date())
+        initDateTime = this.useIso ? parseISO(this.datetime) : parse(this.datetime, this.dateTimeFormat, new Date())
+      }
+
+      if (this.withoutTime) {
+        initDateTime.setHours(0, 0, 0, 0)
       }
 
       this.date = format(initDateTime, DEFAULT_DATE_FORMAT)
@@ -173,7 +192,9 @@ export default {
     },
     okHandler() {
       this.resetPicker()
-      this.$emit('input', this.selectedDatetime)
+      return this.useIso
+        ? this.$emit('input', this.selectedDatetime.toISOString())
+        : this.$emit('input', this.selectedDatetime)
     },
     clearHandler() {
       this.resetPicker()

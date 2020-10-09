@@ -49,11 +49,13 @@ Once installed, it can be used in a template as simply as:
 | dialogWidth      | Number      | 340           | The width of the dialog.                                                                                    |
 | dateFormat       | string      | yyyy-MM-dd    | Defines the format of a date.                                                                               |
 | timeFormat       | string      | HH:mm         | Defines the format of a time.                                                                               |
-| clearText        | string      | CLEAR         | Sets the text of the clear button.                                                                          |
+| clearText        | string      | CLEAR         | Sets the text of the clear button. An empty string prevents the button from showing.                        |
 | okText           | string      | OK            | Sets the text of the ok button.                                                                             |
 | textFieldProps   | Object      |               | Text fields properties. See [Vuetify Docs](https://vuetifyjs.com/en/components/text-fields 'Vuetify Docs')  |
 | datePickerProps  | Object      |               | Date pickers properties.See [Vuetify Docs](https://vuetifyjs.com/en/components/date-pickers 'Vuetify Docs') |
 | timePickerProps  | Object      |               | Time pickers properties.See [Vuetify Docs](https://vuetifyjs.com/en/components/time-pickers 'Vuetify Docs') |
+| useIso           | Boolean     | false         | Use ISO format in datetime (model) and input event                                                          |
+| withoutTime      | Boolean     | false         | Pick a date without a time.                                                                                 |
 
 ## Events
 
