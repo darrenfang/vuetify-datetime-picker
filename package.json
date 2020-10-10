@@ -4,6 +4,7 @@
   "description": "DatetimePicker component for Vuetify.js.",
   "main": "src/index.js",
   "scripts": {
+    "start": "npm run dev",
     "dev": "webpack-dev-server --config webpack/webpack.dev.config.js",
     "build": "webpack --config webpack/webpack.build.config.js --progress --profile --colors",
     "deploy": "npm run build && npm publish --registry https://registry.npmjs.org/",

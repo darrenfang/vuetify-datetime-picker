@@ -51,6 +51,26 @@
           </v-expansion-panel>
 
           <v-expansion-panel>
+            <v-expansion-panel-header>Init with Date without Cancel Button</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-flex xs4>
+                <v-datetime-picker v-model="datetime" cancelText=""></v-datetime-picker>
+              </v-flex>
+              <div>Datetime value: <span v-text="datetime"></span></div>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
+          <v-expansion-panel>
+            <v-expansion-panel-header>Init with Date (persistent)</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-flex xs4>
+                <v-datetime-picker v-model="datetime" persistent></v-datetime-picker>
+              </v-flex>
+              <div>Datetime value: <span v-text="datetime"></span></div>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
+          <v-expansion-panel>
             <v-expansion-panel-header>Init with String</v-expansion-panel-header>
             <v-expansion-panel-content>
               <v-flex xs4>
@@ -196,7 +216,9 @@
                   label="Tag und Zeit"
                   date-format="dd.MM.yyyy"
                   time-format="HH:mm"
+                  ok-text="Speichern"
                   clear-text="Löschen"
+                  cancel-text="Abbrechen"
                   :date-picker-props="datePropsDe"
                   :time-picker-props="timePropsDe"
                 ></v-datetime-picker>

@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="display" :width="dialogWidth">
+  <v-dialog v-model="display" :width="dialogWidth" :persistent="persistent" @click:outside="outsiteHandler" @keydown.esc="outsiteHandler">
     <template v-slot:activator="{ on }">
       <v-text-field
         v-bind="textFieldProps"
@@ -57,6 +57,7 @@
         <slot name="actions" :parent="this">
           <v-btn color="grey lighten-1" text @click.native="clearHandler" v-if="clearText.length > 0">{{ clearText }}</v-btn>
           <v-btn color="green darken-1" text @click="okHandler">{{ okText }}</v-btn>
+          <v-btn color="grey lighten-1" text @click.native="cancelHandler" v-if="cancelText.length > 0">{{ cancelText }}</v-btn>
         </slot>
       </v-card-actions>
     </v-card>
@@ -73,6 +74,7 @@ const DEFAULT_TIME_FORMAT = 'HH:mm:ss'
 const DEFAULT_DIALOG_WIDTH = 340
 const DEFAULT_CLEAR_TEXT = 'CLEAR'
 const DEFAULT_OK_TEXT = 'OK'
+const DEFAULT_CANCEL_TEXT = 'CANCEL'
 
 export default {
   name: 'v-datetime-picker',
@@ -90,6 +92,10 @@ export default {
     },
     loading: {
       type: Boolean
+    },
+    persistent: {
+      type: Boolean,
+      default: false
     },
     label: {
       type: String,
@@ -114,6 +120,10 @@ export default {
     okText: {
       type: String,
       default: DEFAULT_OK_TEXT
+    },
+    cancelText: {
+      type: String,
+      default: DEFAULT_CANCEL_TEXT
     },
     textFieldProps: {
       type: Object
@@ -201,6 +211,20 @@ export default {
       this.date = DEFAULT_DATE
       this.time = DEFAULT_TIME
       this.$emit('input', null)
+    },
+    cancelHandler() {
+      this.resetPicker()
+      if (this.datetime) {
+        this.init()
+      } else {
+        this.date = DEFAULT_DATE
+        this.time = DEFAULT_TIME
+      }
+    },
+    outsiteHandler() {
+      if (!this.persistent) {
+        this.cancelHandler()
+      }
     },
     resetPicker() {
       this.display = false
