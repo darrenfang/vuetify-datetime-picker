@@ -165,6 +165,19 @@
           </v-expansion-panel>
 
           <v-expansion-panel>
+            <v-expansion-panel-header>Custom Validation (Input Required)</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-flex xs4>
+                <v-form v-model="validForm">
+                  <v-datetime-picker v-model="nullDatetime" :textFieldProps="textFieldPropsRules"></v-datetime-picker>
+                </v-form>
+              </v-flex>
+              <div>Datetime value: <span v-text="nullDatetime"></span></div>
+              <div>Valid Form: <span v-text="validForm"></span></div>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
+          <v-expansion-panel>
             <v-expansion-panel-header>Use Seconds</v-expansion-panel-header>
             <v-expansion-panel-content>
               <v-alert type="warning"> You should set <code>time-format</code>. </v-alert>
@@ -239,6 +252,7 @@ import '@fortawesome/fontawesome-free/css/all.css'
 export default {
   data() {
     return {
+      validForm: false,
       nullDatetime: null,
       datetime: new Date(),
       dateWithoutTime: new Date(),
@@ -248,6 +262,9 @@ export default {
       formattedDatetime: '09/01/2019 12:00',
       textFieldProps: {
         appendIcon: 'event'
+      },
+      textFieldPropsRules: {
+        rules: [v => !!v || 'Date is required']
       },
       dateProps: {
         headerColor: 'red'

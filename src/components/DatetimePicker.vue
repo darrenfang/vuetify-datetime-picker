@@ -182,6 +182,8 @@ export default {
   methods: {
     init() {
       if (!this.datetime) {
+        this.date = DEFAULT_DATE
+        this.time = DEFAULT_TIME
         return
       }
 
@@ -214,12 +216,7 @@ export default {
     },
     cancelHandler() {
       this.resetPicker()
-      if (this.datetime) {
-        this.init()
-      } else {
-        this.date = DEFAULT_DATE
-        this.time = DEFAULT_TIME
-      }
+      this.init()
     },
     outsiteHandler() {
       if (!this.persistent) {
