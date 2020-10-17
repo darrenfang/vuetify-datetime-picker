@@ -45,15 +45,19 @@ Once installed, it can be used in a template as simply as:
 | datetime (model) | Date/String |               | Time picker model.                                                                                          |
 | disabled         | Boolean     | false         | Input is disabled.                                                                                          |
 | loading          | Boolean     | false         | Input is loading.                                                                                           |
+| persistent       | Boolean     | false         | Clicking outside of the picker will not close it.                                                           |
 | label            | string      |               | Sets input label.                                                                                           |
 | dialogWidth      | Number      | 340           | The width of the dialog.                                                                                    |
 | dateFormat       | string      | yyyy-MM-dd    | Defines the format of a date.                                                                               |
 | timeFormat       | string      | HH:mm         | Defines the format of a time.                                                                               |
-| clearText        | string      | CLEAR         | Sets the text of the clear button.                                                                          |
+| clearText        | string      | CLEAR         | Sets the text of the clear button. An empty string prevents the button from showing.                        |
+| cancelText       | string      |               | Sets the text of the cancel button. An empty string prevents the button from showing. Click on it resets datetime to value before opening the picker. |  
 | okText           | string      | OK            | Sets the text of the ok button.                                                                             |
 | textFieldProps   | Object      |               | Text fields properties. See [Vuetify Docs](https://vuetifyjs.com/en/components/text-fields 'Vuetify Docs')  |
 | datePickerProps  | Object      |               | Date pickers properties.See [Vuetify Docs](https://vuetifyjs.com/en/components/date-pickers 'Vuetify Docs') |
 | timePickerProps  | Object      |               | Time pickers properties.See [Vuetify Docs](https://vuetifyjs.com/en/components/time-pickers 'Vuetify Docs') |
+| useIso           | Boolean     | false         | Use ISO format in datetime (model) and input event                                                          |
+| withoutTime      | Boolean     | false         | Pick a date without a time.                                                                                 |
 
 ## Events
 

@@ -31,12 +31,62 @@
           </v-expansion-panel>
 
           <v-expansion-panel>
+            <v-expansion-panel-header>Init with Date without Time</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-flex xs4>
+                <v-datetime-picker v-model="dateWithoutTime" without-time></v-datetime-picker>
+              </v-flex>
+              <div>Date value: <span v-text="dateWithoutTime"></span></div>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
+          <v-expansion-panel>
+            <v-expansion-panel-header>Init with Date without Clear Button</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-flex xs4>
+                <v-datetime-picker v-model="datetime" clear-text=""></v-datetime-picker>
+              </v-flex>
+              <div>Datetime value: <span v-text="datetime"></span></div>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
+          <v-expansion-panel>
+            <v-expansion-panel-header>Init with Date without Cancel Button</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-flex xs4>
+                <v-datetime-picker v-model="datetime" cancelText=""></v-datetime-picker>
+              </v-flex>
+              <div>Datetime value: <span v-text="datetime"></span></div>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
+          <v-expansion-panel>
+            <v-expansion-panel-header>Init with Date (persistent)</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-flex xs4>
+                <v-datetime-picker v-model="datetime" persistent></v-datetime-picker>
+              </v-flex>
+              <div>Datetime value: <span v-text="datetime"></span></div>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
+          <v-expansion-panel>
             <v-expansion-panel-header>Init with String</v-expansion-panel-header>
             <v-expansion-panel-content>
               <v-flex xs4>
                 <v-datetime-picker v-model="datetimeString"></v-datetime-picker>
               </v-flex>
               <div>Datetime value: <span v-text="datetimeString"></span></div>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
+          <v-expansion-panel>
+            <v-expansion-panel-header>Init with String without Time</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-flex xs4>
+                <v-datetime-picker v-model="dateStringWithoutTime" without-time></v-datetime-picker>
+              </v-flex>
+              <div>Datetime value: <span v-text="dateStringWithoutTime"></span></div>
             </v-expansion-panel-content>
           </v-expansion-panel>
 
@@ -115,6 +165,19 @@
           </v-expansion-panel>
 
           <v-expansion-panel>
+            <v-expansion-panel-header>Custom Validation (Input Required)</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-flex xs4>
+                <v-form v-model="validForm">
+                  <v-datetime-picker v-model="nullDatetime" :textFieldProps="textFieldPropsRules"></v-datetime-picker>
+                </v-form>
+              </v-flex>
+              <div>Datetime value: <span v-text="nullDatetime"></span></div>
+              <div>Valid Form: <span v-text="validForm"></span></div>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
+          <v-expansion-panel>
             <v-expansion-panel-header>Use Seconds</v-expansion-panel-header>
             <v-expansion-panel-content>
               <v-alert type="warning"> You should set <code>time-format</code>. </v-alert>
@@ -145,6 +208,38 @@
               <div>Datetime value: <span v-text="datetime"></span></div>
             </v-expansion-panel-content>
           </v-expansion-panel>
+
+          <v-expansion-panel>
+            <v-expansion-panel-header>Custom Format: ISO</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-flex xs4>
+                <v-datetime-picker v-model="datetimeStringISO" use-iso ></v-datetime-picker>
+              </v-flex>
+              <div>Datetime value: <span v-text="datetimeStringISO"></span></div>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
+          <v-expansion-panel>
+            <v-expansion-panel-header>Custom Property and Format: German date and time format, ISO</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-flex xs4>
+                <v-datetime-picker
+                  v-model="datetimeStringISO"
+                  use-iso
+                  label="Tag und Zeit"
+                  date-format="dd.MM.yyyy"
+                  time-format="HH:mm"
+                  ok-text="Speichern"
+                  clear-text="Löschen"
+                  cancel-text="Abbrechen"
+                  :date-picker-props="datePropsDe"
+                  :time-picker-props="timePropsDe"
+                ></v-datetime-picker>
+              </v-flex>
+              <div>Datetime value: <span v-text="datetimeStringISO"></span></div>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
         </v-expansion-panels>
       </v-row>
     </v-container>
@@ -157,12 +252,19 @@ import '@fortawesome/fontawesome-free/css/all.css'
 export default {
   data() {
     return {
+      validForm: false,
       nullDatetime: null,
       datetime: new Date(),
+      dateWithoutTime: new Date(),
       datetimeString: '2019-01-01 12:00',
+      datetimeStringISO: '2019-01-01T11:00:00.000Z',
+      dateStringWithoutTime: '2019-01-01',
       formattedDatetime: '09/01/2019 12:00',
       textFieldProps: {
         appendIcon: 'event'
+      },
+      textFieldPropsRules: {
+        rules: [v => !!v || 'Date is required']
       },
       dateProps: {
         headerColor: 'red'
@@ -170,6 +272,14 @@ export default {
       timeProps: {
         useSeconds: true,
         ampmInTitle: true
+      },
+      datePropsDe: {
+        locale: 'de-de',
+        firstDayOfWeek: 1
+      },
+      timePropsDe: {
+        locale: 'de-de',
+        format: '24hr'
       }
     }
   }
