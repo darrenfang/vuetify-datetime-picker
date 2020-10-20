@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="display" :width="dialogWidth">
+  <v-dialog v-model="display" :width="dialogWidth" @click:outside="okHandler">
     <template v-slot:activator="{ on }">
       <v-text-field
         v-bind="textFieldProps"
