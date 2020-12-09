@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="display" :width="dialogWidth">
+  <v-dialog v-model="display" content-class="dialog-datetime-picker" :width="dialogWidth">
     <template v-slot:activator="{ on }">
       <v-text-field
         v-bind="textFieldProps"
