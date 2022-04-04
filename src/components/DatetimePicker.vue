@@ -32,12 +32,12 @@
             </slot>
           </v-tab>
           <v-tab-item key="calendar">
-            <v-date-picker v-model="date" v-bind="datePickerProps" @input="showTimePicker" full-width></v-date-picker>
+            <v-date-picker class="notranslate" v-model="date" v-bind="datePickerProps" @input="showTimePicker" full-width></v-date-picker>
           </v-tab-item>
           <v-tab-item key="timer">
             <v-time-picker
               ref="timer"
-              class="v-time-picker-custom"
+              class="v-time-picker-custom notranslate"
               v-model="time"
               v-bind="timePickerProps"
               full-width
@@ -48,8 +48,8 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <slot name="actions" :parent="this">
-          <v-btn color="grey lighten-1" text @click.native="clearHandler">{{ clearText }}</v-btn>
-          <v-btn color="green darken-1" text @click="okHandler">{{ okText }}</v-btn>
+          <v-btn class="notranslate" color="grey lighten-1" text @click.native="clearHandler">{{ clearText }}</v-btn>
+          <v-btn class="notranslate" color="green darken-1" text @click="okHandler">{{ okText }}</v-btn>
         </slot>
       </v-card-actions>
     </v-card>
@@ -199,3 +199,4 @@ export default {
   }
 }
 </script>
+
