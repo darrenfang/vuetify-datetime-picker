@@ -2,7 +2,7 @@ import 'vuetify/src/styles/main.sass'
 import './stylus/main.styl'
 import Vue from 'vue'
 import vuetify from './plugins/vuetify' // path to vuetify export
-import App from './app'
+import App from './app.vue'
 
 new Vue({
   vuetify,
