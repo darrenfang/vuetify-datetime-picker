@@ -153,7 +153,7 @@ export default {
       default: false
     },
     errorMessages: {
-      type: String,
+      type: [Array, String],
       default: ''
     },
     min: {
