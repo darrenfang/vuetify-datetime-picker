@@ -1,63 +1,75 @@
 <template>
-  <v-dialog v-model="display" :width="dialogWidth">
-    <template v-slot:activator="{ on }">
-      <v-text-field
-        v-bind="textFieldProps"
-        :disabled="disabled"
-        :loading="loading"
-        :label="label"
-        :value="formattedDatetime"
-        v-on="on"
-        readonly
-      >
-        <template v-slot:progress>
-          <slot name="progress">
-            <v-progress-linear color="primary" indeterminate absolute height="2"></v-progress-linear>
-          </slot>
+    <v-dialog v-model="display" :width="dialogWidth">
+        <template v-slot:activator="{ on }">
+            <v-text-field
+                    v-bind="textFieldProps"
+                    :disabled="disabled"
+                    :loading="loading"
+                    :label="label"
+                    :value="formattedDatetime"
+                    :error="error"
+                    :error-messages="errorMessages"
+                    v-on="on"
+                    readonly
+            >
+                <template v-slot:progress>
+                    <slot name="progress">
+                        <v-progress-linear color="primary" indeterminate absolute height="2"></v-progress-linear>
+                    </slot>
+                </template>
+            </v-text-field>
         </template>
-      </v-text-field>
-    </template>
 
-    <v-card>
-      <v-card-text class="px-0 py-0">
-        <v-tabs fixed-tabs v-model="activeTab">
-          <v-tab key="calendar">
-            <slot name="dateIcon">
-              <v-icon>event</v-icon>
-            </slot>
-          </v-tab>
-          <v-tab key="timer" :disabled="dateSelected">
-            <slot name="timeIcon">
-              <v-icon>access_time</v-icon>
-            </slot>
-          </v-tab>
-          <v-tab-item key="calendar">
-            <v-date-picker v-model="date" v-bind="datePickerProps" @input="showTimePicker" full-width></v-date-picker>
-          </v-tab-item>
-          <v-tab-item key="timer">
-            <v-time-picker
-              ref="timer"
-              class="v-time-picker-custom"
-              v-model="time"
-              v-bind="timePickerProps"
-              full-width
-            ></v-time-picker>
-          </v-tab-item>
-        </v-tabs>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <slot name="actions" :parent="this">
-          <v-btn color="grey lighten-1" text @click.native="clearHandler">{{ clearText }}</v-btn>
-          <v-btn color="green darken-1" text @click="okHandler">{{ okText }}</v-btn>
-        </slot>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+        <v-card>
+            <v-card-text class="px-0 py-0">
+                <v-tabs :slider-color="tabsSliderColor" :background-color="tabsBackgroundColor" fixed-tabs
+                        v-model="activeTab">
+                    <v-tab key="calendar">
+                        <slot name="dateIcon">
+                            <v-icon>event</v-icon>
+                        </slot>
+                    </v-tab>
+                    <v-tab key="timer" :disabled="dateSelected">
+                        <slot name="timeIcon">
+                            <v-icon>access_time</v-icon>
+                        </slot>
+                    </v-tab>
+                    <v-tab-item key="calendar">
+                        <v-date-picker v-model="date"
+                                       v-bind="datePickerProps"
+                                       :color="color"
+                                       :min="minDate"
+                                       :max="maxDate"
+                                       @input="showTimePicker"
+                                       full-width></v-date-picker>
+                    </v-tab-item>
+                    <v-tab-item key="timer">
+                        <v-time-picker
+                                ref="timer"
+                                class="v-time-picker-custom"
+                                v-model="time"
+                                v-bind="timePickerProps"
+                                :min="minTime"
+                                :max="maxTime"
+                                :color="color"
+                                full-width
+                        ></v-time-picker>
+                    </v-tab-item>
+                </v-tabs>
+            </v-card-text>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <slot name="actions" :parent="this">
+                    <v-btn :color="clearColor" text @click.native="clearHandler">{{ clearText }}</v-btn>
+                    <v-btn :color="okColor" text @click="okHandler">{{ okText }}</v-btn>
+                </slot>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
 </template>
 
 <script>
-import { format, parse } from 'date-fns'
+import { format, parse, isSameDay } from 'date-fns'
 
 const DEFAULT_DATE = ''
 const DEFAULT_TIME = '00:00:00'
@@ -116,6 +128,41 @@ export default {
     },
     timePickerProps: {
       type: Object
+    },
+    color: {
+      type: String
+    },
+    okColor: {
+      type: String,
+      default: 'green darken-1'
+    },
+    clearColor: {
+      type: String,
+      default: 'grey lighten-1'
+    },
+    tabsBackgroundColor: {
+      type: String,
+      default: ''
+    },
+    tabsSliderColor: {
+      type: String,
+      default: ''
+    },
+    error: {
+      type: Boolean,
+      default: false
+    },
+    errorMessages: {
+      type: [Array, String],
+      default: ''
+    },
+    min: {
+      type: Date,
+      default: null
+    },
+    max: {
+      type: Date,
+      default: null
     }
   },
   data() {
@@ -150,13 +197,45 @@ export default {
         return null
       }
     },
+
+    minDate() {
+      return this.min ? format(this.min, DEFAULT_DATE_FORMAT) : null
+    },
+
+    minTime() {
+      const { selectedDatetime, min } = this
+
+      if (selectedDatetime === null || min === null || !isSameDay(selectedDatetime, min)) {
+        return null
+      }
+
+      return format(min, DEFAULT_TIME_FORMAT)
+    },
+
+    maxDate() {
+      return this.max ? format(this.max, DEFAULT_DATE_FORMAT) : null
+    },
+
+    maxTime() {
+      const { selectedDatetime, max } = this
+
+      if (selectedDatetime === null || max === null || !isSameDay(selectedDatetime, max)) {
+        return null
+      }
+
+      return format(max, DEFAULT_TIME_FORMAT)
+    },
+
     dateSelected() {
       return !this.date
     }
   },
+
   methods: {
     init() {
       if (!this.datetime) {
+        this.date = DEFAULT_DATE
+        this.time = DEFAULT_TIME
         return
       }
 
