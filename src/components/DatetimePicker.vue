@@ -32,7 +32,7 @@
             </slot>
           </v-tab>
           <v-tab-item key="calendar">
-            <v-date-picker v-model="date" v-bind="datePickerProps" @input="showTimePicker" full-width></v-date-picker>
+            <v-date-picker v-model="date" first-day-of-week="1" v-bind="datePickerProps" @input="showTimePicker" full-width></v-date-picker>
           </v-tab-item>
           <v-tab-item key="timer">
             <v-time-picker
